@@ -18,3 +18,9 @@
 
 # Modify hostname
 #sed -i 's/OpenWrt/P3TERX-Router/g' package/base-files/files/bin/config_generate
+
+# 修改引导分区大小为 256MB (默认通常很小)
+sed -i 's/CONFIG_TARGET_KERNEL_PARTSIZE=16/CONFIG_TARGET_KERNEL_PARTSIZE=256/g' .config
+
+# 修改根分区大小为 2048MB (即 2GB，解决你 290MB 的限制)
+sed -i 's/CONFIG_TARGET_ROOTFS_PARTSIZE=160/CONFIG_TARGET_ROOTFS_PARTSIZE=2048/g' .config
